@@ -7,6 +7,6 @@ A project of exploring culture heritage objects with computer vision approches
 - opencv==3.4.1
 - skimage==0.10.1
 
-### How to run:
-1. ./make (it will output a library named sherd2depth.so if everything goes well)
+### How to use:
+1. make (it will output a library named sherd2depth.so if everything goes well)
 2. python match.py (results will be saved in ./data)
