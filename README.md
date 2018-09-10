@@ -8,5 +8,5 @@ A project of exploring culture heritage objects with computer vision approches
 - skimage==0.10.1
 
 ### How to use:
-1. make (it will output a library named sherd2depth.so if everything goes well)
-2. python match.py (results will be saved in ./data)
+1. make (If everything goes well, it will output the library "sherd2depth.so")
+2. python match.py (Results are saved in ./data)
