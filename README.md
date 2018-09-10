@@ -1,7 +1,7 @@
 # SnowVision
 A project of exploring culture heritage objects with computer vision approches
 
-### Required environments:
+### Dependency:
 - caffe==1.0.0
 - pcl==1.8.0
 - opencv==3.4.1
