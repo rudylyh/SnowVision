@@ -56,7 +56,7 @@ Example of matching result table:
 #### Experimental result:
 We use our method to match 247 raw sherds with a database of 100 designs, and get the below CMC curve. It means Y% of sherds could find the correct design in top-X matches. Each sherd takes about 5-10 mins.
 <p align="center">
-<img src="data/cmc_curve.png" width="90%"/>
+<img src="data/cmc_curve.png" width="75%"/>
 </p>
 
 
