@@ -4,8 +4,10 @@
 The aim of SnowVision is to automate the matching process between fragmentary stamped pottery sherds from the archaeological record and their appropriate complete paddle design from among the hundreds of registered design reconstructions in the corpus. Example of sherds and designs are shown as below.
 
 <p align="center">
-<img src="data/eg_img.png" width="80%"/>
+<img src="data/example.png" width="80%"/>
 </p>
+
+*Original design reproduced with permission, courtesy of Frankie Snow, South Georgia State College.*
 
 Technically, our goal is to find the ground truth design of the query sherd in the design database and the corresponding location.
 
