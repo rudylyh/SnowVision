@@ -6,7 +6,7 @@ import caffe
 import argparse
 import json
 from curve_extraction import depth2curve
-from curve_matching import Matcher, GetTopKMatch, WriteMatchResults
+from curve_matching import Matcher
 
 
 parser = argparse.ArgumentParser()
@@ -63,7 +63,7 @@ if __name__ == "__main__":
         cv2.imwrite(args.curve_dir + img_name, curve_img)
 
         print("Matching with designs ...")
-        top_k_match = GetTopKMatch(opts, matcher, xyz_name.split('.')[0], depth_img, curve_img, mask_img, args.design_dir)
-        WriteMatchResults(top_k_match, args.res_dir)
+        top_k_match = matcher.GetTopKMatch(xyz_name.split('.')[0], depth_img, curve_img, mask_img, args.design_dir)
+        matcher.WriteMatchResults(top_k_match, args.res_dir)
 
         print("Finished.")
