@@ -7,8 +7,6 @@ The aim of SnowVision is to automate the matching process between fragmentary st
 <img src="data/example.png" width="80%"/>
 </p>
 
-*Original design reproduced with permission, courtesy of Frankie Snow, South Georgia State College.*
-
 Technically, our goal is to find the ground truth design of the query sherd in the design database and the corresponding location.
 
 <p align="center">
