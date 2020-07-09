@@ -44,11 +44,11 @@ Example of matching result table:
 #### Usage example:
 - For one sherd:
 
-    `$ python main.py --xyz-dir ./data/split_xyz --xyz-name SCAN000702.xyz`
+    `$ python main.py --xyz-dir ./data/raw_xyz/ --xyz-name SCAN000702.xyz`
 
 - For batch processing (all xyz files in the directory):
 
-    `$ python main.py --xyz-dir ./data/split_xyz`
+    `$ python main.py --xyz-dir ./data/raw_xyz/`
 
 - The result paths could be specified with parameters of '--depth-dir', '--curve-dir', '--mask-dir' and '--res-dir'.
 

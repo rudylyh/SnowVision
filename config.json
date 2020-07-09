@@ -4,8 +4,8 @@
     "sample_resolution": 0.1,
     "resize_scale": 0.5,
     "patch_size": 150,
-    "design_patch_stride": 5,
-    "sherd_patch_stride": 5,
+    "design_patch_stride": 50,
+    "sherd_patch_stride": 50,
     "batch_size": 500,
     "feat_len": 24576,
     "top_k": 20

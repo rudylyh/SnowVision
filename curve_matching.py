@@ -105,7 +105,7 @@ class Matcher():
         self.opts = opts
         self.design_patch_loc_dict = GetDesignPatchLocDict(design_dir, opts)
 
-    def img2feat(self, img):
+    def img2feat_old(self, img):
         img = np.transpose(img, (1,2,0))
         img = cv2.resize(img, (self.opts['patch_size'], self.opts['patch_size']))
         if img.ndim == 2:
@@ -120,6 +120,20 @@ class Matcher():
         self.sim_model.forward()
         feat = self.sim_model.blobs['conv4'].data.copy()
         return feat.reshape(img.shape[0], -1)
+
+    def img2feat(self, img):
+        img = np.transpose(img, (1,2,0))
+        img = cv2.resize(img, (self.opts['patch_size'], self.opts['patch_size']))
+        if img.ndim == 2:
+            img = np.expand_dims(img, axis=2)
+        img = np.transpose(img, (2,0,1))
+        img = img.astype(float)
+        img = img - 128
+        img = img / 255
+        img = np.expand_dims(img, axis=1)
+        img = torch.Tensor(img).to(sim_model.device)
+        feat = sim_model(img)
+        return feat.data.cpu().numpy()
 
     def GetSherdToDesignPatchDists(self, sherd_patch_imgs, design_patch_feats):
         sherd_patch_feats = np.zeros((0, self.opts['feat_len']), dtype=np.float32)
