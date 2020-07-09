@@ -11,7 +11,7 @@ typedef pcl::PointCloud<Point> PointCloud;
 typedef pcl::PointXY Point2D;
 typedef pcl::PointCloud<Point2D> PointCloud2D;
 
-/*
+
 void ViewSignleCloud(PointCloud::Ptr cloud)
 {
 	boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer(new pcl::visualization::PCLVisualizer("3D Viewer"));
@@ -42,7 +42,7 @@ void ViewDualCloud(PointCloud::Ptr cloud1, PointCloud::Ptr cloud2)
 		boost::this_thread::sleep(boost::posix_time::microseconds(100000));
 	}
 }
-*/
+
 
 //Read xyz file
 bool ReadXYZ(const string &file_name, PointCloud::Ptr cloud)
@@ -112,14 +112,15 @@ int SplitCloud(char* in_dir, char* file_name, char* out_dir, double min_height_p
 		PointCloud::Ptr all_sherd_cloud(new PointCloud);
 		Point min_bound, max_bound;
 		pcl::getMinMax3D(*src_cloud, min_bound, max_bound);
-		double height_thre = (max_bound.z - min_bound.z) * min_height_percent;
-		//double height_thre = 5;
+		// double height_thre = (max_bound.z - min_bound.z) * min_height_percent;
+		double height_thre = 5;
 		for (size_t i = 0; i < src_cloud->points.size(); i++)
 		{
 			if (src_cloud->points[i].z - min_bound.z > height_thre)
 				all_sherd_cloud->points.push_back(src_cloud->points[i]);
 		}
-		
+		// ViewDualCloud(src_cloud, all_sherd_cloud);
+
 		//split the cloud by KD-Tree clustering
 		pcl::search::KdTree<Point>::Ptr tree(new pcl::search::KdTree<Point>);
 		tree->setInputCloud(all_sherd_cloud);
