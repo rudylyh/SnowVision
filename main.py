@@ -29,7 +29,7 @@ xyz_proc_lib.xyz2depth.argtypes = [ctypes.c_char_p, ctypes.c_char_p, ctypes.c_ch
 ''' Load CNN models '''
 # caffe.set_mode_cpu()
 caffe.set_mode_gpu()
-caffe.set_device(0)
+caffe.set_device(1)
 cmn_net = caffe.Net('./model/cmn_deploy.prototxt','./model/cmn_iter_10000.caffemodel', caffe.TEST)
 cen_net = caffe.Net('./model/cen_deploy.prototxt','./model/cen_iter_27000.caffemodel', caffe.TEST)
 pcn_net = caffe.Net('./model/pcn_deploy.prototxt','./model/pcn_iter_50000.caffemodel', caffe.TEST)
