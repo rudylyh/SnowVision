@@ -1,4 +1,5 @@
 import cv2
+import torch
 import numpy as np
 from skimage.morphology import skeletonize
 
@@ -33,12 +34,13 @@ def RemoveSmallArea(img, thre):
 
 #depth image to skeleton heatmap
 def depth2hm(depth_img, cen_net):
-    cen_input = depth_img[np.newaxis, ...]
-    cen_net.blobs['data'].reshape(1, *cen_input.shape)
-    cen_net.blobs['data'].data[...] = cen_input
-    cen_net.forward()
-    hm_img = cen_net.blobs['output'].data[0][1,:,:]
-    hm_img = Normalize(hm_img) #heatmap
+    cen_input = depth_img[np.newaxis, np.newaxis, ...]
+    cen_input = torch.Tensor(cen_input).to(torch.device('cuda'))
+    hm_img = cen_net(cen_input).data.cpu().numpy()
+    hm_img = Normalize(hm_img[0,1])
+    # cv2.imshow('depth_img', depth_img)
+    # cv2.imshow('hm_img', hm_img)
+    # cv2.waitKey()
     return hm_img
 
 
@@ -62,9 +64,11 @@ def RefineSkel(hm_img, raw_skel_img, pcn_net, k = 25):
         for c in range(k, pad_raw_skel_img.shape[1]-k):
             if pad_raw_skel_img[r,c] == 255:
                 hm_patch = pad_hm_img[r-k:r+k+1, c-k:c+k+1]
-                pcn_net.blobs['data'].data[...] = hm_patch
-                pcn_net.forward()
-                prob = Softmax(pcn_net.blobs['fc5'].data[0])[1]
+                hm_patch = cv2.cvtColor(hm_patch, cv2.COLOR_GRAY2RGB)
+                hm_patch = np.transpose(hm_patch, (2,0,1))
+                hm_patch = hm_patch[np.newaxis, ...]
+                hm_patch = torch.Tensor(hm_patch).to(torch.device('cuda'))
+                prob = Softmax(pcn_net(hm_patch).data.cpu().numpy()[0])[1]
                 if prob > 0.5:
                     skel_img[r-k, c-k] = 255
     return skel_img
