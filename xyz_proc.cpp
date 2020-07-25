@@ -1,5 +1,5 @@
 #include <opencv2/highgui/highgui.hpp>
-#include <pcl/visualization/pcl_visualizer.h>
+// #include <pcl/visualization/pcl_visualizer.h>
 #include <pcl/kdtree/kdtree.h>
 #include <pcl/segmentation/extract_clusters.h>
 #include <pcl/recognition/linemod/line_rgbd.h>
@@ -119,7 +119,7 @@ int SplitCloud(char* in_dir, char* file_name, char* out_dir, double min_height_p
 			if (src_cloud->points[i].z - min_bound.z > height_thre)
 				all_sherd_cloud->points.push_back(src_cloud->points[i]);
 		}
-		
+
 		//split the cloud by KD-Tree clustering
 		pcl::search::KdTree<Point>::Ptr tree(new pcl::search::KdTree<Point>);
 		tree->setInputCloud(all_sherd_cloud);

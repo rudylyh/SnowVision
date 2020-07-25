@@ -83,6 +83,7 @@ def GetBoxOnImg(img, x, y, angle, size):
 
     dst_box = np.array([[0, 0], [size - 1, 0], [size - 1, size - 1], [0, size - 1]]).astype(np.float32)
     src_box = dst_box + np.array([x, y])
+
     rotate_mat = cv2.getRotationMatrix2D((x + p, y + p), angle, 1.0)
     src_box = cv2.transform(np.expand_dims(src_box, axis=1), rotate_mat)
     box_on_ori_img = src_box - np.array([top_left_x, top_left_x])
