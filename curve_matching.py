@@ -199,18 +199,18 @@ class Matcher():
     def WriteMatchResults(self, top_k_match, save_dir):
         sherd_id, sherd_depth, sherd_curve = \
             top_k_match[0]['sherd_id'], top_k_match[0]['sherd_depth'], top_k_match[0]['sherd_curve']
-        tmp_save_dir = os.path.join(save_dir, sherd_id)
-        if not os.path.exists(tmp_save_dir):
-            os.mkdir(tmp_save_dir)
-        cv2.imwrite(os.path.join(tmp_save_dir, 'sherd_depth.png'), sherd_depth)
-        cv2.imwrite(os.path.join(tmp_save_dir, 'sherd_curve.png'), sherd_curve)
+        # save_dir = os.path.join(save_dir, sherd_id)
+        # if not os.path.exists(save_dir):
+        #     os.mkdir(save_dir)
+        # cv2.imwrite(os.path.join(save_dir, 'sherd_depth.png'), sherd_depth)
+        # cv2.imwrite(os.path.join(save_dir, 'sherd_curve.png'), sherd_curve)
 
         for i, match in enumerate(top_k_match):
             match_rank, match_score, design_id, design_img, rect_on_sherd, rect_on_design, \
             cropped_sherd_patch, cropped_design_patch, marked_sherd, marked_design = \
                 match['match_rank'], match['match_score'], match['design_id'], match['design_img'], match['rect_on_sherd'], match['rect_on_design'], \
                 match['cropped_sherd_patch'], match['cropped_design_patch'], match['marked_sherd'], match['marked_design']
-            rank_dir = os.path.join(tmp_save_dir, str(match_rank))
+            rank_dir = os.path.join(save_dir, str(match_rank))
             if not os.path.exists(rank_dir):
                 os.mkdir(rank_dir)
             cv2.imwrite(os.path.join(rank_dir, 'design_img.png'), design_img)
@@ -219,7 +219,7 @@ class Matcher():
             cv2.imwrite(os.path.join(rank_dir, 'marked_sherd.png'), marked_sherd)
             cv2.imwrite(os.path.join(rank_dir, 'marked_design.png'), marked_design)
 
-        frontend_xls = xlsxwriter.Workbook(os.path.join(tmp_save_dir, 'frontend.xlsx'))
+        frontend_xls = xlsxwriter.Workbook(os.path.join(save_dir, 'match_locs.xlsx'))
         frontend_table = frontend_xls.add_worksheet()
         center = frontend_xls.add_format({'align': 'center'})
         frontend_table.set_column('A:A', 15)
@@ -243,7 +243,7 @@ class Matcher():
         frontend_xls.close()
 
 
-        final_xls = xlsxwriter.Workbook(os.path.join(tmp_save_dir, 'final.xlsx'))
+        final_xls = xlsxwriter.Workbook(os.path.join(save_dir, 'match_result.xlsx'))
         final_table = final_xls.add_worksheet()
         center = final_xls.add_format({'align': 'center', 'valign': 'vcenter',})
         final_table.set_column('A:A', 15)
@@ -274,19 +274,19 @@ class Matcher():
 
             scale = 200.0 / max(sherd_depth.shape)
             y_offset = (250.0 - scale * sherd_depth.shape[0]) * 0.8 / 2
-            final_table.insert_image(i+1, 3, os.path.join(tmp_save_dir, 'sherd_depth.png'), {'x_scale': scale, 'y_scale': scale, 'x_offset': 0, 'y_offset': y_offset})
+            final_table.insert_image(i+1, 3, os.path.join(save_dir, 'depth.png'), {'x_scale': scale, 'y_scale': scale, 'x_offset': 0, 'y_offset': y_offset})
 
             scale = 150.0 / max(cropped_sherd_patch.shape)
             y_offset = (250.0 - scale * cropped_sherd_patch.shape[0]) * 0.8 / 2
-            final_table.insert_image(i+1, 4, os.path.join(tmp_save_dir, str(match_rank), 'cropped_sherd_patch.png'), {'x_scale': scale, 'y_scale': scale, 'x_offset': 0, 'y_offset': y_offset})
-            final_table.insert_image(i+1, 5, os.path.join(tmp_save_dir, str(match_rank), 'cropped_design_patch.png'), {'x_scale': scale, 'y_scale': scale, 'x_offset': 0, 'y_offset': y_offset})
+            final_table.insert_image(i+1, 4, os.path.join(save_dir, str(match_rank), 'cropped_sherd_patch.png'), {'x_scale': scale, 'y_scale': scale, 'x_offset': 0, 'y_offset': y_offset})
+            final_table.insert_image(i+1, 5, os.path.join(save_dir, str(match_rank), 'cropped_design_patch.png'), {'x_scale': scale, 'y_scale': scale, 'x_offset': 0, 'y_offset': y_offset})
 
             scale = 200.0 / max(marked_sherd.shape)
             y_offset = (250.0 - scale * marked_sherd.shape[0]) * 0.8 / 2
-            final_table.insert_image(i+1, 6, os.path.join(tmp_save_dir, str(match_rank), 'marked_sherd.png'), {'x_scale': scale, 'y_scale': scale, 'x_offset': 0, 'y_offset': y_offset})
+            final_table.insert_image(i+1, 6, os.path.join(save_dir, str(match_rank), 'marked_sherd.png'), {'x_scale': scale, 'y_scale': scale, 'x_offset': 0, 'y_offset': y_offset})
 
             scale = 250.0 / max(marked_design.shape)
             y_offset = (250.0 - scale * marked_design.shape[0]) * 0.8 / 2
-            final_table.insert_image(i+1, 7, os.path.join(tmp_save_dir, str(match_rank), 'marked_design.png'), {'x_scale': scale, 'y_scale': scale, 'x_offset': 0, 'y_offset': y_offset})
+            final_table.insert_image(i+1, 7, os.path.join(save_dir, str(match_rank), 'marked_design.png'), {'x_scale': scale, 'y_scale': scale, 'x_offset': 0, 'y_offset': y_offset})
 
         final_xls.close()

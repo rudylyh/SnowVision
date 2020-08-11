@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cc7cae0a-5ed5-4bc1-a769-9a52f1947004" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/curve_matching.py" beforeDir="false" afterPath="$PROJECT_DIR$/curve_matching.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +28,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SnowVision/exp_sim_eval/data_v3/curve_matching_127sherds.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../few-shot/FSS-1000" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
   </component>
   <component name="RunManager" selected="Python.curve_matching_127sherds">
@@ -108,42 +107,42 @@
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
     <state x="612" y="227" width="320" height="535" key="EnvironmentVariablesDialog/67.27.1613.1023@67.27.1613.1023" timestamp="1594335287126" />
-    <state x="656" y="295" width="424" height="484" key="FileChooserDialogImpl" timestamp="1595386966602">
+    <state x="656" y="295" width="416" height="484" key="FileChooserDialogImpl" timestamp="1595822918148">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state x="656" y="295" width="424" height="484" key="FileChooserDialogImpl/67.27.1613.1023@67.27.1613.1023" timestamp="1595386966602" />
-    <state width="1590" height="212" key="GridCell.Tab.0.bottom" timestamp="1595441129998">
+    <state x="656" y="295" width="416" height="484" key="FileChooserDialogImpl/67.27.1613.1023@67.27.1613.1023" timestamp="1595822918148" />
+    <state width="1590" height="212" key="GridCell.Tab.0.bottom" timestamp="1595822950426">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="212" key="GridCell.Tab.0.bottom/67.27.1613.1023@67.27.1613.1023" timestamp="1595441129998" />
-    <state width="1590" height="212" key="GridCell.Tab.0.center" timestamp="1595441129997">
+    <state width="1590" height="212" key="GridCell.Tab.0.bottom/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950426" />
+    <state width="1590" height="212" key="GridCell.Tab.0.center" timestamp="1595822950426">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="212" key="GridCell.Tab.0.center/67.27.1613.1023@67.27.1613.1023" timestamp="1595441129997" />
-    <state width="1590" height="212" key="GridCell.Tab.0.left" timestamp="1595441129997">
+    <state width="1590" height="212" key="GridCell.Tab.0.center/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950426" />
+    <state width="1590" height="212" key="GridCell.Tab.0.left" timestamp="1595822950426">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="212" key="GridCell.Tab.0.left/67.27.1613.1023@67.27.1613.1023" timestamp="1595441129997" />
-    <state width="1590" height="212" key="GridCell.Tab.0.right" timestamp="1595441129997">
+    <state width="1590" height="212" key="GridCell.Tab.0.left/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950426" />
+    <state width="1590" height="212" key="GridCell.Tab.0.right" timestamp="1595822950426">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="212" key="GridCell.Tab.0.right/67.27.1613.1023@67.27.1613.1023" timestamp="1595441129997" />
-    <state width="1590" height="332" key="GridCell.Tab.1.bottom" timestamp="1595389606538">
+    <state width="1590" height="212" key="GridCell.Tab.0.right/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950426" />
+    <state width="1590" height="332" key="GridCell.Tab.1.bottom" timestamp="1595822950420">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="332" key="GridCell.Tab.1.bottom/67.27.1613.1023@67.27.1613.1023" timestamp="1595389606538" />
-    <state width="1590" height="332" key="GridCell.Tab.1.center" timestamp="1595389606538">
+    <state width="1590" height="332" key="GridCell.Tab.1.bottom/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950420" />
+    <state width="1590" height="332" key="GridCell.Tab.1.center" timestamp="1595822950420">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="332" key="GridCell.Tab.1.center/67.27.1613.1023@67.27.1613.1023" timestamp="1595389606538" />
-    <state width="1590" height="332" key="GridCell.Tab.1.left" timestamp="1595389606537">
+    <state width="1590" height="332" key="GridCell.Tab.1.center/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950420" />
+    <state width="1590" height="332" key="GridCell.Tab.1.left" timestamp="1595822950420">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="332" key="GridCell.Tab.1.left/67.27.1613.1023@67.27.1613.1023" timestamp="1595389606537" />
-    <state width="1590" height="332" key="GridCell.Tab.1.right" timestamp="1595389606538">
+    <state width="1590" height="332" key="GridCell.Tab.1.left/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950420" />
+    <state width="1590" height="332" key="GridCell.Tab.1.right" timestamp="1595822950420">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="332" key="GridCell.Tab.1.right/67.27.1613.1023@67.27.1613.1023" timestamp="1595389606538" />
+    <state width="1590" height="332" key="GridCell.Tab.1.right/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950420" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

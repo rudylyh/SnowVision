@@ -45,13 +45,13 @@ void ViewDualCloud(PointCloud::Ptr cloud1, PointCloud::Ptr cloud2)
 */
 
 //Read xyz file
-bool ReadXYZ(const string &file_name, PointCloud::Ptr cloud)
+bool ReadXYZ(const string &scan_name, PointCloud::Ptr cloud)
 {
 	ifstream fs;
-	fs.open(file_name.c_str(), ios::binary);
+	fs.open(scan_name.c_str(), ios::binary);
 	if (!fs.is_open() || fs.fail())
 	{
-		PCL_ERROR("Could not open file '%s'! Error : %s\n", file_name.c_str(), strerror(errno));
+		PCL_ERROR("Could not open file '%s'! Error : %s\n", scan_name.c_str(), strerror(errno));
 		fs.close();
 		return false;
 	}
@@ -80,10 +80,10 @@ bool ReadXYZ(const string &file_name, PointCloud::Ptr cloud)
 }
 
 //Write xyz file
-void WriteXYZ(string file_name, PointCloud::Ptr cloud)
+void WriteXYZ(string scan_name, PointCloud::Ptr cloud)
 {
   ofstream writeFile;
-  writeFile.open(file_name.c_str());
+  writeFile.open(scan_name.c_str());
   for (size_t p = 0; p < cloud->points.size(); p++)
   {
     writeFile << cloud->points[p].x << " ";
@@ -99,12 +99,12 @@ void WriteXYZ(string file_name, PointCloud::Ptr cloud)
 //@min_height_percent: erase points under a certain height
 //@min_size_percent: ignore point clusters smaller than a certain size
 extern "C"
-int SplitCloud(char* in_dir, char* file_name, char* out_dir, double min_height_percent, double min_size_percent)
+int SplitCloud(char* in_dir, char* scan_name, char* out_dir, double min_height_percent, double min_size_percent)
 {
 	PointCloud::Ptr src_cloud(new PointCloud);
 	string in_dir_str(in_dir);
-	string file_name_str(file_name);
-	bool if_read = ReadXYZ(in_dir_str+file_name_str, src_cloud);
+	string scan_name_str(scan_name);
+	bool if_read = ReadXYZ(in_dir_str + '/' + scan_name_str, src_cloud);
 	if (!if_read)
 		return -1;
 	else
@@ -148,110 +148,112 @@ int SplitCloud(char* in_dir, char* file_name, char* out_dir, double min_height_p
 
 		//write split clouds to xyz files
 		string out_dir_str(out_dir);
-		file_name_str = file_name_str.substr(0, file_name_str.size()-4);
+		scan_name_str = scan_name_str.substr(0, scan_name_str.size()-4);
 		for (size_t c = 0; c < split_cloud_vec.size(); c++)
 		{
 			char idx = '1' + c;
-			string out_path = out_dir_str + file_name_str + '-' + idx + ".xyz";
+			string sub_out_dir = out_dir_str + '/' + scan_name_str + '-' + idx;
+			int status = mkdir(sub_out_dir.c_str(), 0777);
+			string out_path = sub_out_dir + "/sherd.xyz";
 			WriteXYZ(out_path, split_cloud_vec[c]);
 		}
 		return split_cloud_vec.size();
 	}
 }
 
-//Mapping 3D cloud to 2D Matrix
-void CloudSampling(PointCloud::Ptr cloud, cv::Mat &depth_mat, double resolution)
-{
-	Point min_bound, max_bound;
-	pcl::getMinMax3D(*cloud, min_bound, max_bound);
-	double cloud_width = max_bound.x - min_bound.x;
-	double cloud_height = max_bound.y - min_bound.y;
-	int image_width = (int)(cloud_width / resolution);
-	int image_height = (int)(cloud_height / resolution);
-	depth_mat = cv::Mat(image_height, image_width, CV_32F, cv::Scalar(-1)); //-1 means background
-
-	PointCloud2D::Ptr cloud2D(new PointCloud2D);
-	for (size_t i = 0; i < cloud->points.size(); i++)
-	{
-		Point2D tempPoint{ cloud->points[i].x - min_bound.x, cloud->points[i].y - min_bound.y };
-		cloud2D->points.push_back(tempPoint);
-	}
-
-	pcl::KdTreeFLANN<pcl::PointXY> kdtree;
-	kdtree.setInputCloud(cloud2D);
-	int K = 1;
-	for (size_t i = 0; i < image_height; i++)
-	{
-		for (size_t j = 0; j < image_width; j++)
-		{
-			float x = j * resolution;
-			float y = i * resolution;
-			std::vector<int> pointIdxNKNSearch(K);
-			std::vector<float> pointNKNSquaredDistance(K);
-			kdtree.nearestKSearch(Point2D{ x, y }, K, pointIdxNKNSearch, pointNKNSquaredDistance);
-			if (pointNKNSquaredDistance[0] < resolution)
-			{
-				float temp_depth = cloud->points[pointIdxNKNSearch[0]].z;
-				depth_mat.at<float>(i, j) = temp_depth - min_bound.z;
-			}
-		}
-	}
-}
-
-//Normalize float matrix to image (0-255), and create a mask image (background)
-void NormDepthImg(cv::Mat &src_img, cv::Mat &mask_img, cv::Mat &dst_img)
-{
-	float min = FLT_MAX, max = FLT_MIN;
-	mask_img = cv::Mat(src_img.rows, src_img.cols, CV_8U, cv::Scalar(255));
-	for (size_t i = 0; i < src_img.rows; i++)
-	{
-		for (size_t j = 0; j < src_img.cols; j++)
-		{
-			float temp = src_img.at<float>(i, j);
-			if (temp == -1)
-				mask_img.at<uchar>(i, j) = 0;
-			else if (temp > max)
-				max = temp;
-			else if (temp < min)
-				min = temp;
-		}
-	}
-	dst_img = cv::Mat(src_img.rows, src_img.cols, CV_8U, cv::Scalar(0));
-	for (size_t i = 0; i < src_img.rows; i++)
-	{
-		for (size_t j = 0; j < src_img.cols; j++)
-		{
-			if (mask_img.at<uchar>(i, j) == 255)
-			{
-				int temp = (int)((src_img.at<float>(i, j) - min) * 255 / (max - min));
-				dst_img.at<uchar>(i, j) = temp; //high gray value means high elevation
-			}
-		}
-	}
-}
-
-//Convert xyz file to depth image
-extern "C"
-int xyz2depth(char* xyz_name, char* depth_name, char* mask_name, double resolution)
-{
-	PointCloud::Ptr src_cloud(new PointCloud);
-	bool if_read = ReadXYZ(xyz_name, src_cloud);
-  if (!if_read)
-    return -1;
-  else
-  {
-    cv::Mat depth_mat;
-    CloudSampling(src_cloud, depth_mat, resolution);
-  	cv::flip(depth_mat, depth_mat, 0);
-		cv::Mat depth_img, mask_img;
-		NormDepthImg(depth_mat, mask_img, depth_img);
-    //cv::imshow("1", depth_img);
-    //cv::waitKey();
-    cv::imwrite(depth_name, depth_img);
-    cv::imwrite(mask_name, mask_img);
-  }
-  return 1;
-}
+// //Mapping 3D cloud to 2D Matrix
+// void CloudSampling(PointCloud::Ptr cloud, cv::Mat &depth_mat, double resolution)
+// {
+// 	Point min_bound, max_bound;
+// 	pcl::getMinMax3D(*cloud, min_bound, max_bound);
+// 	double cloud_width = max_bound.x - min_bound.x;
+// 	double cloud_height = max_bound.y - min_bound.y;
+// 	int image_width = (int)(cloud_width / resolution);
+// 	int image_height = (int)(cloud_height / resolution);
+// 	depth_mat = cv::Mat(image_height, image_width, CV_32F, cv::Scalar(-1)); //-1 means background
+//
+// 	PointCloud2D::Ptr cloud2D(new PointCloud2D);
+// 	for (size_t i = 0; i < cloud->points.size(); i++)
+// 	{
+// 		Point2D tempPoint{ cloud->points[i].x - min_bound.x, cloud->points[i].y - min_bound.y };
+// 		cloud2D->points.push_back(tempPoint);
+// 	}
+//
+// 	pcl::KdTreeFLANN<pcl::PointXY> kdtree;
+// 	kdtree.setInputCloud(cloud2D);
+// 	int K = 1;
+// 	for (size_t i = 0; i < image_height; i++)
+// 	{
+// 		for (size_t j = 0; j < image_width; j++)
+// 		{
+// 			float x = j * resolution;
+// 			float y = i * resolution;
+// 			std::vector<int> pointIdxNKNSearch(K);
+// 			std::vector<float> pointNKNSquaredDistance(K);
+// 			kdtree.nearestKSearch(Point2D{ x, y }, K, pointIdxNKNSearch, pointNKNSquaredDistance);
+// 			if (pointNKNSquaredDistance[0] < resolution)
+// 			{
+// 				float temp_depth = cloud->points[pointIdxNKNSearch[0]].z;
+// 				depth_mat.at<float>(i, j) = temp_depth - min_bound.z;
+// 			}
+// 		}
+// 	}
+// }
+//
+// //Normalize float matrix to image (0-255), and create a mask image (background)
+// void NormDepthImg(cv::Mat &src_img, cv::Mat &mask_img, cv::Mat &dst_img)
+// {
+// 	float min = FLT_MAX, max = FLT_MIN;
+// 	mask_img = cv::Mat(src_img.rows, src_img.cols, CV_8U, cv::Scalar(255));
+// 	for (size_t i = 0; i < src_img.rows; i++)
+// 	{
+// 		for (size_t j = 0; j < src_img.cols; j++)
+// 		{
+// 			float temp = src_img.at<float>(i, j);
+// 			if (temp == -1)
+// 				mask_img.at<uchar>(i, j) = 0;
+// 			else if (temp > max)
+// 				max = temp;
+// 			else if (temp < min)
+// 				min = temp;
+// 		}
+// 	}
+// 	dst_img = cv::Mat(src_img.rows, src_img.cols, CV_8U, cv::Scalar(0));
+// 	for (size_t i = 0; i < src_img.rows; i++)
+// 	{
+// 		for (size_t j = 0; j < src_img.cols; j++)
+// 		{
+// 			if (mask_img.at<uchar>(i, j) == 255)
+// 			{
+// 				int temp = (int)((src_img.at<float>(i, j) - min) * 255 / (max - min));
+// 				dst_img.at<uchar>(i, j) = temp; //high gray value means high elevation
+// 			}
+// 		}
+// 	}
+// }
+//
+// //Convert xyz file to depth image
+// extern "C"
+// int xyz2depth(char* xyz_name, char* depth_name, char* mask_name, double resolution)
+// {
+// 	PointCloud::Ptr src_cloud(new PointCloud);
+// 	bool if_read = ReadXYZ(xyz_name, src_cloud);
+//   if (!if_read)
+//     return -1;
+//   else
+//   {
+//     cv::Mat depth_mat;
+//     CloudSampling(src_cloud, depth_mat, resolution);
+//   	cv::flip(depth_mat, depth_mat, 0);
+// 		cv::Mat depth_img, mask_img;
+// 		NormDepthImg(depth_mat, mask_img, depth_img);
+//     //cv::imshow("1", depth_img);
+//     //cv::waitKey();
+//     cv::imwrite(depth_name, depth_img);
+//     cv::imwrite(mask_name, mask_img);
+//   }
+//   return 1;
+// }
 
 
 /*

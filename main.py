@@ -7,71 +7,75 @@ import json
 from collections import OrderedDict
 from curve_extraction import depth2curve
 from curve_matching import Matcher
+from xyz2depth import ReadXYZ, PointCloud2DepthImg
 import torch
 from network import CEN, CMN, PCN
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--config-file', type=str, default='./config.json', help='parameter settings')
-parser.add_argument('--xyz-dir', type=str, default='./data/split_xyz/')
-parser.add_argument('--xyz-name', type=str, default=None)
-parser.add_argument('--design-dir', type=str, default='./data/designs/', help='design database')
-parser.add_argument('--depth-dir', type=str, default='./data/depth/', help='for saving depth images')
-parser.add_argument('--curve-dir', type=str, default='./data/curve/', help='for saving extracted curves')
-parser.add_argument('--mask-dir', type=str, default='./data/mask/', help='for saving mask images')
-parser.add_argument('--res-dir', type=str, default='./data/match_result/')
+parser.add_argument('--config-file', type=str, default='./config.json', help='json of parameter settings')
+parser.add_argument('--in-dir', type=str, default='./input', help='a folder of raw scans')
+parser.add_argument('--scan-name', type=str, default=None, help='process the whole input folder if not specified')
+parser.add_argument('--design-dir', type=str, default='./designs', help='a folder of design images')
+parser.add_argument('--out-dir', type=str, default='./output', help='one sub-folders for each sherd')
 args = parser.parse_args()
 
 
 opts = json.load(open(args.config_file, 'r'))
-xyz_proc_lib = ctypes.CDLL("/WD1/github_repos/SnowVision/libxyz_proc.so")
-xyz_proc_lib.xyz2depth.argtypes = [ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_double]
+xyz_proc_lib = ctypes.CDLL("./libxyz_proc.so")
+xyz_proc_lib.SplitCloud.argtypes = [ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_double, ctypes.c_double]
 
 
 ''' Load CNN models '''
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 cen_net = CEN()
-cen_ckp = torch.load('./model/renamed_cen.pth', map_location=lambda storage, loc: storage)
+cen_ckp = torch.load('./model/cen.pth', map_location=lambda storage, loc: storage)
 cen_net.load_state_dict(cen_ckp)
 cen_net.to(device)
 pcn_net = PCN()
-pcn_ckp = torch.load('./model/renamed_pcn.pth', map_location=lambda storage, loc: storage)
+pcn_ckp = torch.load('./model/pcn.pth', map_location=lambda storage, loc: storage)
 pcn_net.load_state_dict(pcn_ckp)
 pcn_net.to(device)
 cmn_net = CMN()
-cmn_ckp = torch.load('./model/renamed_cmn.pth', map_location=lambda storage, loc: storage)
+cmn_ckp = torch.load('./model/cmn.pth', map_location=lambda storage, loc: storage)
 cmn_net.load_state_dict(cmn_ckp)
 cmn_net.to(device)
 matcher = Matcher(opts, cmn_net, args.design_dir)
 
 
 if __name__ == "__main__":
-    if args.xyz_name is None:
-        name_list = os.listdir(args.xyz_dir)
+    if args.scan_name is None:
+        name_list = os.listdir(args.in_dir)
     else:
-        name_list = [args.xyz_name]
+        name_list = [args.scan_name]
 
-    for xyz_name in name_list:
-        print("Processing:", xyz_name)
-        img_name = xyz_name.split('.')[0] + '.png'
+    for scan_name in name_list:
+        print("Splitting scan:", scan_name)
+        split_num = xyz_proc_lib.SplitCloud(
+                        bytes(args.in_dir, encoding='utf8'),
+                        bytes(scan_name, encoding='utf8'),
+                        bytes(args.out_dir, encoding='utf8'),
+                        opts['min_height_percent'],
+                        opts['min_size_percent'])
+        if split_num == -1:
+            print("No sherd found.")
+        else:
+            print(split_num, "sherd(s) found.")
 
-        print("Extracting depth image ...")
-        proc_status = xyz_proc_lib.xyz2depth(
-                        bytes(args.xyz_dir + xyz_name, encoding='utf8'),
-                        bytes(args.depth_dir + img_name, encoding='utf8'),
-                        bytes(args.mask_dir + img_name, encoding='utf8'),
-                        opts['sample_resolution'])
-        if proc_status == -1:
-            print("Failed to extract depth image.")
-            continue
+        for i in range(0, split_num):
+            sherd_name = scan_name.split('.')[0] + '-' + str(i+1)
 
-        print("Extracting curve image ...")
-        depth_img = cv2.imread(args.depth_dir + img_name, 0)
-        mask_img = cv2.imread(args.mask_dir + img_name, 0)
-        curve_img = depth2curve(depth_img, mask_img, cen_net, pcn_net)
-        cv2.imwrite(args.curve_dir + img_name, curve_img)
+            print("--- Processing sherd:", sherd_name)
+            pt_cloud = ReadXYZ(os.path.join(args.out_dir, sherd_name, 'sherd.xyz'))
 
-        print("Matching with designs ...")
-        top_k_match = matcher.GetTopKMatch(xyz_name.split('.')[0], depth_img, curve_img, mask_img, args.design_dir)
-        matcher.WriteMatchResults(top_k_match, args.res_dir)
+            print("------ Extracting depth image")
+            depth_mat, depth_img, mask_img = PointCloud2DepthImg(pt_cloud, px_size=opts['sample_resolution'])
+            cv2.imwrite(os.path.join(args.out_dir, sherd_name, 'depth.png'), depth_img)
+            cv2.imwrite(os.path.join(args.out_dir, sherd_name, 'mask.png'), mask_img)
 
-        print("Finished.")
+            print("------ Extracting curve image")
+            curve_img = depth2curve(depth_img, mask_img, cen_net, pcn_net)
+            cv2.imwrite(os.path.join(args.out_dir, sherd_name, 'curve.png'), curve_img)
+
+            print("------ Matching with all designs")
+            top_k_match = matcher.GetTopKMatch(sherd_name.split('.')[0], depth_img, curve_img, mask_img, args.design_dir)
+            matcher.WriteMatchResults(top_k_match, os.path.join(args.out_dir, sherd_name))
