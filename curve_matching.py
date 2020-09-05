@@ -8,17 +8,6 @@ import xlsxwriter
 import torch
 
 
-def GetDesignPatchLocDict(design_dir, opts):
-    design_patch_loc_dict = dict()
-    for j, design_name in enumerate(sorted(os.listdir(design_dir))):
-        design_name = design_name.split('.')[0]
-        design_img = cv2.imread(os.path.join(design_dir, design_name + '.png'), 0)
-        design_img = cv2.resize(design_img, None, fx=opts['resize_scale'], fy=opts['resize_scale'])
-        design_patch_locs, design_patch_imgs = GetDesignPatches(design_img, size=opts['patch_size'], stride=opts['design_patch_stride'])
-        design_patch_loc_dict[design_name] = design_patch_locs
-    return design_patch_loc_dict
-
-
 def GetSherdPatches(img, size, stride):
     (h, w) = img.shape
     p = int(size / 2)
@@ -104,7 +93,6 @@ class Matcher():
         self.gpu_index = faiss.index_cpu_to_all_gpus(cpu_index)
         self.sim_model = sim_model
         self.opts = opts
-        self.design_patch_loc_dict = GetDesignPatchLocDict(design_dir, opts)
 
     def img2feat(self, img):
         img = np.transpose(img, (1,2,0))
@@ -116,7 +104,7 @@ class Matcher():
         img = img - 128
         img = img / 255
         img = np.expand_dims(img, axis=1)
-        img = torch.Tensor(img).to(torch.device('cuda'))
+        img = torch.Tensor(img).to(next(self.sim_model.parameters()).device)
         feat = self.sim_model(img)
         return feat.data.cpu().numpy()
 
@@ -131,13 +119,12 @@ class Matcher():
         sherd2design_dist, sherd2design_idx = self.gpu_index.search(sherd_patch_feats, 1)
         return sherd2design_dist.squeeze(), sherd2design_idx.squeeze()
 
-
     def GetTopKMatch(self, sherd_name, depth_img, curve_img, mask_img, design_dir):
         resize_scale = self.opts['resize_scale']
         batch_size = self.opts['batch_size']
-        patch_size = self.opts['patch_size']
-        sherd_patch_stride = self.opts['sherd_patch_stride']
-        design_patch_stride = self.opts['design_patch_stride']
+        patch_size = int(self.opts['patch_size'] * resize_scale)
+        sherd_patch_stride = int(self.opts['sherd_patch_stride'] * resize_scale)
+        design_patch_stride = int(self.opts['design_patch_stride'] * resize_scale)
         feat_len = self.opts['feat_len']
         top_k = self.opts['top_k']
 
@@ -152,11 +139,16 @@ class Matcher():
 
         # One pair of patches for each design
         candi_matches = list()
+        design_patch_loc_dict = dict()
         for j, design_name in enumerate(os.listdir(design_dir)):
             design_name = design_name.split('.')[0]
+            # if design_name != '143':
+            #     continue
+            # print(design_name)
             design_img = cv2.imread(os.path.join(design_dir, design_name + '.png'), 0)
             design_img = cv2.resize(design_img, None, fx=resize_scale, fy=resize_scale)
             design_patch_locs, design_patch_imgs = GetDesignPatches(design_img, size=patch_size, stride=design_patch_stride)
+            design_patch_loc_dict[design_name] = design_patch_locs
             design_patch_imgs[:, round_mask == 0] = 0
             design_patch_feats = np.zeros((0, feat_len), dtype=np.float32)
             k = 0
@@ -172,11 +164,11 @@ class Matcher():
         candi_matches = sorted(candi_matches, key=lambda match: match[-1], reverse=True)
 
         top_k_match = list()
-        for k in range(0, top_k):
+        for k in range(0, min(top_k, len(candi_matches))):
             [design_name, sherd_patch_idx, design_patch_idx, match_score] = candi_matches[k]
             [dx, dy, angle, _] = sherd_patch_locs[sherd_patch_idx]
             sherd_patch, marked_sherd, box_on_sherd = GetBoxOnImg(sherd_img, dx, dy, angle, size=patch_size)
-            [dx, dy] = self.design_patch_loc_dict[design_name][design_patch_idx]
+            [dx, dy] = design_patch_loc_dict[design_name][design_patch_idx]
             design_img = cv2.imread(os.path.join(design_dir, design_name + '.png'), 0)
             design_img = cv2.resize(design_img, None, fx=resize_scale, fy=resize_scale)
             design_patch, marked_design, box_on_design = GetBoxOnImg(design_img, dx, dy, 0, size=patch_size)
