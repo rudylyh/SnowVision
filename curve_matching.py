@@ -96,7 +96,7 @@ class Matcher():
 
     def img2feat(self, img):
         img = np.transpose(img, (1,2,0))
-        img = cv2.resize(img, (self.opts['patch_size'], self.opts['patch_size']))
+        # img = cv2.resize(img, (self.opts['patch_size'], self.opts['patch_size']))
         if img.ndim == 2:
             img = np.expand_dims(img, axis=2)
         img = np.transpose(img, (2,0,1))
@@ -147,6 +147,8 @@ class Matcher():
             # print(design_name)
             design_img = cv2.imread(os.path.join(design_dir, design_name + '.png'), 0)
             design_img = cv2.resize(design_img, None, fx=resize_scale, fy=resize_scale)
+            if design_img.shape[0] < patch_size or design_img.shape[1] < patch_size:
+                continue
             design_patch_locs, design_patch_imgs = GetDesignPatches(design_img, size=patch_size, stride=design_patch_stride)
             design_patch_loc_dict[design_name] = design_patch_locs
             design_patch_imgs[:, round_mask == 0] = 0
@@ -233,7 +235,6 @@ class Matcher():
             frontend_table.write(i+1, 3, np.array2string(rect_on_sherd))
             frontend_table.write(i+1, 4, np.array2string(rect_on_design))
         frontend_xls.close()
-
 
         final_xls = xlsxwriter.Workbook(os.path.join(save_dir, 'match_result.xlsx'))
         final_table = final_xls.add_worksheet()
