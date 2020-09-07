@@ -96,7 +96,7 @@ class Matcher():
 
     def img2feat(self, img):
         img = np.transpose(img, (1,2,0))
-        # img = cv2.resize(img, (self.opts['patch_size'], self.opts['patch_size']))
+        img = cv2.resize(img, (150, 150))
         if img.ndim == 2:
             img = np.expand_dims(img, axis=2)
         img = np.transpose(img, (2,0,1))
