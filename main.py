@@ -26,7 +26,8 @@ xyz_proc_lib.SplitCloud.argtypes = [ctypes.c_char_p, ctypes.c_char_p, ctypes.c_c
 
 
 ''' Load CNN models '''
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:1')
 cen_net = CEN()
 cen_ckp = torch.load('./model/cen.pth', map_location=lambda storage, loc: storage)
 cen_net.load_state_dict(cen_ckp)
@@ -63,19 +64,21 @@ if __name__ == "__main__":
 
         for i in range(0, split_num):
             sherd_name = scan_name.split('.')[0] + '-' + str(i+1)
-
             print("--- Processing sherd:", sherd_name)
-            pt_cloud = ReadXYZ(os.path.join(args.out_dir, sherd_name, 'sherd.xyz'))
+            try:
+                pt_cloud = ReadXYZ(os.path.join(args.out_dir, sherd_name, 'sherd.xyz'))
 
-            print("------ Extracting depth image")
-            depth_mat, depth_img, mask_img = PointCloud2DepthImg(pt_cloud, px_size=opts['sample_resolution'])
-            cv2.imwrite(os.path.join(args.out_dir, sherd_name, 'depth.png'), depth_img)
-            cv2.imwrite(os.path.join(args.out_dir, sherd_name, 'mask.png'), mask_img)
+                print("------ Extracting depth image")
+                depth_mat, depth_img, mask_img = PointCloud2DepthImg(pt_cloud, px_size=opts['sample_resolution'])
+                cv2.imwrite(os.path.join(args.out_dir, sherd_name, 'depth.png'), depth_img)
+                cv2.imwrite(os.path.join(args.out_dir, sherd_name, 'mask.png'), mask_img)
 
-            print("------ Extracting curve image")
-            curve_img = depth2curve(depth_img, mask_img, cen_net, pcn_net)
-            cv2.imwrite(os.path.join(args.out_dir, sherd_name, 'curve.png'), curve_img)
+                print("------ Extracting curve image")
+                curve_img = depth2curve(depth_img, mask_img, cen_net, pcn_net)
+                cv2.imwrite(os.path.join(args.out_dir, sherd_name, 'curve.png'), curve_img)
 
-            print("------ Matching with all designs")
-            top_k_match = matcher.GetTopKMatch(sherd_name.split('.')[0], depth_img, curve_img, mask_img, args.design_dir)
-            matcher.WriteMatchResults(top_k_match, os.path.join(args.out_dir, sherd_name))
+                print("------ Matching with all designs")
+                top_k_match = matcher.GetTopKMatch(sherd_name.split('.')[0], depth_img, curve_img, mask_img, args.design_dir)
+                matcher.WriteMatchResults(top_k_match, os.path.join(args.out_dir, sherd_name))
+            except:
+                print("Failed.")
