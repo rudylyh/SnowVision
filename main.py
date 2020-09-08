@@ -26,8 +26,8 @@ xyz_proc_lib.SplitCloud.argtypes = [ctypes.c_char_p, ctypes.c_char_p, ctypes.c_c
 
 
 ''' Load CNN models '''
-# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-device = torch.device('cuda:1')
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+# device = torch.device('cuda:1')
 cen_net = CEN()
 cen_ckp = torch.load('./model/cen.pth', map_location=lambda storage, loc: storage)
 cen_net.load_state_dict(cen_ckp)
