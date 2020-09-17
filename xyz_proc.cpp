@@ -112,8 +112,8 @@ int SplitCloud(char* in_dir, char* scan_name, char* out_dir, double min_height_p
 		PointCloud::Ptr all_sherd_cloud(new PointCloud);
 		Point min_bound, max_bound;
 		pcl::getMinMax3D(*src_cloud, min_bound, max_bound);
-		double height_thre = (max_bound.z - min_bound.z) * min_height_percent;
-		//double height_thre = 5;
+		// double height_thre = (max_bound.z - min_bound.z) * min_height_percent;
+		double height_thre = 5;
 		for (size_t i = 0; i < src_cloud->points.size(); i++)
 		{
 			if (src_cloud->points[i].z - min_bound.z > height_thre)

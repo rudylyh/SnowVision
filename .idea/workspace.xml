@@ -2,7 +2,210 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc7cae0a-5ed5-4bc1-a769-9a52f1947004" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/1/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/1/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/1/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/1/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/1/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/1/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/1/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/1/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/1/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/1/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/10/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/10/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/10/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/10/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/10/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/10/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/10/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/10/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/10/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/10/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/11/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/11/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/11/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/11/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/11/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/11/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/11/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/11/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/11/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/11/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/12/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/12/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/12/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/12/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/12/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/12/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/12/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/12/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/12/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/12/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/13/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/13/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/13/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/13/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/13/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/13/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/13/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/13/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/13/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/13/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/14/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/14/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/14/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/14/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/14/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/14/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/14/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/14/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/14/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/14/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/15/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/15/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/15/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/15/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/15/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/15/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/15/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/15/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/15/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/15/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/16/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/16/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/16/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/16/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/16/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/16/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/16/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/16/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/16/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/16/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/17/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/17/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/17/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/17/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/17/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/17/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/17/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/17/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/17/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/17/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/18/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/18/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/18/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/18/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/18/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/18/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/18/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/18/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/18/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/18/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/19/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/19/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/19/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/19/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/19/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/19/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/19/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/19/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/19/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/19/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/2/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/2/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/2/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/2/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/2/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/2/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/2/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/2/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/2/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/2/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/20/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/20/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/20/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/20/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/20/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/20/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/20/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/20/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/20/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/20/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/3/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/3/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/3/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/3/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/3/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/3/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/3/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/3/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/3/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/3/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/4/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/4/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/4/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/4/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/4/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/4/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/4/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/4/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/4/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/4/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/5/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/5/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/5/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/5/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/5/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/5/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/5/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/5/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/5/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/5/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/6/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/6/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/6/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/6/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/6/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/6/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/6/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/6/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/6/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/6/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/7/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/7/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/7/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/7/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/7/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/7/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/7/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/7/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/8/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/8/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/8/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/8/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/8/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/8/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/8/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/8/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/8/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/8/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/9/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/9/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/9/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/9/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/9/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/9/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/9/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/9/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/9/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/9/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/match_locs.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/match_locs.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-1/match_result.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-1/match_result.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/1/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/1/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/1/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/1/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/1/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/1/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/1/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/1/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/1/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/1/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/10/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/10/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/10/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/10/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/10/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/10/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/10/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/10/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/10/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/10/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/11/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/11/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/11/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/11/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/11/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/11/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/11/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/11/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/12/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/12/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/12/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/12/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/12/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/12/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/12/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/12/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/12/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/12/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/13/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/13/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/13/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/13/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/13/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/13/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/13/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/13/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/13/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/13/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/14/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/14/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/14/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/14/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/14/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/14/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/14/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/14/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/14/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/14/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/15/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/15/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/15/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/15/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/15/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/15/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/15/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/15/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/15/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/15/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/16/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/16/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/16/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/16/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/16/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/16/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/16/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/16/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/16/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/16/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/17/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/17/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/17/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/17/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/17/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/17/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/17/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/17/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/17/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/17/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/18/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/18/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/18/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/18/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/18/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/18/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/18/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/18/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/18/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/18/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/19/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/19/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/19/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/19/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/19/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/19/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/19/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/19/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/19/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/19/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/2/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/2/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/2/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/2/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/2/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/2/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/2/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/2/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/2/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/2/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/20/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/20/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/20/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/20/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/20/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/20/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/20/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/20/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/20/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/20/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/3/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/3/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/3/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/3/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/3/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/3/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/3/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/3/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/3/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/3/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/4/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/4/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/4/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/4/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/4/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/4/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/4/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/4/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/4/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/4/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/5/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/5/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/5/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/5/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/5/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/5/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/5/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/5/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/5/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/5/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/6/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/6/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/6/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/6/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/6/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/6/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/6/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/6/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/6/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/6/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/7/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/7/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/7/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/7/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/7/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/7/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/7/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/7/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/8/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/8/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/8/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/8/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/8/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/8/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/8/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/8/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/8/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/8/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/9/cropped_design_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/9/cropped_design_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/9/cropped_sherd_patch.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/9/cropped_sherd_patch.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/9/design_img.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/9/design_img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/9/marked_design.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/9/marked_design.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/9/marked_sherd.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/9/marked_sherd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/match_locs.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/match_locs.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/SCAN000702-2/match_result.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/output/SCAN000702-2/match_result.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,10 +231,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../few-shot/FSS-1000" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
   </component>
-  <component name="RunManager" selected="Python.curve_matching_127sherds">
+  <component name="RunManager" selected="Python.main">
     <configuration name="curve_matching_127sherds" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="release" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -68,7 +271,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="--xyz-dir ./data/split_xyz/ --xyz-name SCAN000702-1.xyz" />
+      <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -82,19 +285,20 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.curve_matching_127sherds" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.curve_matching_127sherds" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="WindowStateProjectService">
-    <state x="387" y="136" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594926534235">
+    <state x="387" y="136" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599369378851">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state x="387" y="136" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1613.1023@67.27.1613.1023" timestamp="1594926534235" />
+    <state x="387" y="136" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1613.1023@67.27.1613.1023" timestamp="1599369378851" />
     <state x="521" y="124" width="694" height="827" key="#curve_matching_127sherds" timestamp="1595387008402">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
@@ -111,53 +315,37 @@
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
     <state x="656" y="295" width="416" height="484" key="FileChooserDialogImpl/67.27.1613.1023@67.27.1613.1023" timestamp="1595822918148" />
-    <state width="1590" height="212" key="GridCell.Tab.0.bottom" timestamp="1595822950426">
+    <state width="1590" height="212" key="GridCell.Tab.0.bottom" timestamp="1599793251206">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="212" key="GridCell.Tab.0.bottom/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950426" />
-    <state width="1590" height="212" key="GridCell.Tab.0.center" timestamp="1595822950426">
+    <state width="1590" height="212" key="GridCell.Tab.0.bottom/67.27.1613.1023@67.27.1613.1023" timestamp="1599793251206" />
+    <state width="1590" height="212" key="GridCell.Tab.0.center" timestamp="1599793251206">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="212" key="GridCell.Tab.0.center/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950426" />
-    <state width="1590" height="212" key="GridCell.Tab.0.left" timestamp="1595822950426">
+    <state width="1590" height="212" key="GridCell.Tab.0.center/67.27.1613.1023@67.27.1613.1023" timestamp="1599793251206" />
+    <state width="1590" height="212" key="GridCell.Tab.0.left" timestamp="1599793251205">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="212" key="GridCell.Tab.0.left/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950426" />
-    <state width="1590" height="212" key="GridCell.Tab.0.right" timestamp="1595822950426">
+    <state width="1590" height="212" key="GridCell.Tab.0.left/67.27.1613.1023@67.27.1613.1023" timestamp="1599793251205" />
+    <state width="1590" height="212" key="GridCell.Tab.0.right" timestamp="1599793251206">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="212" key="GridCell.Tab.0.right/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950426" />
-    <state width="1590" height="332" key="GridCell.Tab.1.bottom" timestamp="1595822950420">
+    <state width="1590" height="212" key="GridCell.Tab.0.right/67.27.1613.1023@67.27.1613.1023" timestamp="1599793251206" />
+    <state width="1590" height="332" key="GridCell.Tab.1.bottom" timestamp="1599793251201">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="332" key="GridCell.Tab.1.bottom/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950420" />
-    <state width="1590" height="332" key="GridCell.Tab.1.center" timestamp="1595822950420">
+    <state width="1590" height="332" key="GridCell.Tab.1.bottom/67.27.1613.1023@67.27.1613.1023" timestamp="1599793251201" />
+    <state width="1590" height="332" key="GridCell.Tab.1.center" timestamp="1599793251200">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="332" key="GridCell.Tab.1.center/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950420" />
-    <state width="1590" height="332" key="GridCell.Tab.1.left" timestamp="1595822950420">
+    <state width="1590" height="332" key="GridCell.Tab.1.center/67.27.1613.1023@67.27.1613.1023" timestamp="1599793251200" />
+    <state width="1590" height="332" key="GridCell.Tab.1.left" timestamp="1599793251200">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="332" key="GridCell.Tab.1.left/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950420" />
-    <state width="1590" height="332" key="GridCell.Tab.1.right" timestamp="1595822950420">
+    <state width="1590" height="332" key="GridCell.Tab.1.left/67.27.1613.1023@67.27.1613.1023" timestamp="1599793251200" />
+    <state width="1590" height="332" key="GridCell.Tab.1.right" timestamp="1599793251200">
       <screen x="67" y="27" width="1613" height="1023" />
     </state>
-    <state width="1590" height="332" key="GridCell.Tab.1.right/67.27.1613.1023@67.27.1613.1023" timestamp="1595822950420" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>43</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>40</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state width="1590" height="332" key="GridCell.Tab.1.right/67.27.1613.1023@67.27.1613.1023" timestamp="1599793251200" />
   </component>
 </project>
