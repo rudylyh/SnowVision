@@ -14,7 +14,7 @@ from network import CEN, CMN, PCN
 parser = argparse.ArgumentParser()
 parser.add_argument('--config-file', type=str, default='./config.json', help='json of parameter settings')
 parser.add_argument('--in-dir', type=str, default='./input', help='a folder of raw scans')
-parser.add_argument('--scan-name', type=str, default=None, help='process the whole input folder if not specified')
+parser.add_argument('--scan-name', type=str, default=None, help='process the whole input folder if None')
 parser.add_argument('--design-dir', type=str, default='./designs', help='a folder of design images')
 parser.add_argument('--out-dir', type=str, default='./output', help='one sub-folders for each sherd')
 args = parser.parse_args()
@@ -55,7 +55,7 @@ if __name__ == "__main__":
                         bytes(args.in_dir, encoding='utf8'),
                         bytes(scan_name, encoding='utf8'),
                         bytes(args.out_dir, encoding='utf8'),
-                        opts['min_height_percent'],
+                        opts['min_pc_height'],
                         opts['min_size_percent'])
         if split_num == -1:
             print("No sherd found.")

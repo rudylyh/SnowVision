@@ -89,14 +89,16 @@ def GetBoxOnImg(img, x, y, angle, size):
 
 class Matcher():
     def __init__(self, opts, sim_model, design_dir):
-        cpu_index = faiss.IndexFlatL2(opts['feat_len'])
+        self.cnn_patch_size = 150
+        self.cnn_feat_len = 24576
+        cpu_index = faiss.IndexFlatL2(self.cnn_feat_len)
         self.gpu_index = faiss.index_cpu_to_all_gpus(cpu_index)
         self.sim_model = sim_model
         self.opts = opts
 
     def img2feat(self, img):
         img = np.transpose(img, (1,2,0))
-        img = cv2.resize(img, (150, 150))
+        img = cv2.resize(img, (self.cnn_patch_size, self.cnn_patch_size))
         if img.ndim == 2:
             img = np.expand_dims(img, axis=2)
         img = np.transpose(img, (2,0,1))
@@ -109,7 +111,7 @@ class Matcher():
         return feat.data.cpu().numpy()
 
     def GetSherdToDesignPatchDists(self, sherd_patch_imgs, design_patch_feats):
-        sherd_patch_feats = np.zeros((0, self.opts['feat_len']), dtype=np.float32)
+        sherd_patch_feats = np.zeros((0, self.cnn_feat_len), dtype=np.float32)
         k = 0
         while k < sherd_patch_imgs.shape[0]:
             sherd_patch_feats = np.vstack((sherd_patch_feats, self.img2feat(sherd_patch_imgs[k:k + self.opts['batch_size']])))
@@ -125,7 +127,6 @@ class Matcher():
         patch_size = int(self.opts['patch_size'] * resize_scale)
         sherd_patch_stride = int(self.opts['sherd_patch_stride'] * resize_scale)
         design_patch_stride = int(self.opts['design_patch_stride'] * resize_scale)
-        feat_len = self.opts['feat_len']
         top_k = self.opts['top_k']
 
         sherd_img = curve_img
@@ -152,7 +153,7 @@ class Matcher():
             design_patch_locs, design_patch_imgs = GetDesignPatches(design_img, size=patch_size, stride=design_patch_stride)
             design_patch_loc_dict[design_name] = design_patch_locs
             design_patch_imgs[:, round_mask == 0] = 0
-            design_patch_feats = np.zeros((0, feat_len), dtype=np.float32)
+            design_patch_feats = np.zeros((0, self.cnn_feat_len), dtype=np.float32)
             k = 0
             while k < design_patch_imgs.shape[0]:
                 design_patch_feats = np.vstack((design_patch_feats, self.img2feat(design_patch_imgs[k:k + batch_size])))

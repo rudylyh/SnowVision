@@ -96,10 +96,10 @@ void WriteXYZ(string scan_name, PointCloud::Ptr cloud)
 //Split the cloud if it contains multiple sherds (the cloud is supposed to be scanned horizontally)
 //@in_file: the input xyz file
 //@out_dir: the directory of output split xyz files
-//@min_height_percent: erase points under a certain height
+//@min_pc_height: erase points under a certain height
 //@min_size_percent: ignore point clusters smaller than a certain size
 extern "C"
-int SplitCloud(char* in_dir, char* scan_name, char* out_dir, double min_height_percent, double min_size_percent)
+int SplitCloud(char* in_dir, char* scan_name, char* out_dir, double min_pc_height, double min_size_percent)
 {
 	PointCloud::Ptr src_cloud(new PointCloud);
 	string in_dir_str(in_dir);
@@ -112,11 +112,10 @@ int SplitCloud(char* in_dir, char* scan_name, char* out_dir, double min_height_p
 		PointCloud::Ptr all_sherd_cloud(new PointCloud);
 		Point min_bound, max_bound;
 		pcl::getMinMax3D(*src_cloud, min_bound, max_bound);
-		// double height_thre = (max_bound.z - min_bound.z) * min_height_percent;
-		double height_thre = 5;
+		// double min_pc_height = (max_bound.z - min_bound.z) * min_height_percent;
 		for (size_t i = 0; i < src_cloud->points.size(); i++)
 		{
-			if (src_cloud->points[i].z - min_bound.z > height_thre)
+			if (src_cloud->points[i].z - min_bound.z > min_pc_height)
 				all_sherd_cloud->points.push_back(src_cloud->points[i]);
 		}
 
