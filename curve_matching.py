@@ -6,6 +6,7 @@ import json
 import faiss
 import xlsxwriter
 import torch
+from skimage.transform import resize
 
 
 def GetSherdPatches(img, size, stride):
@@ -15,13 +16,15 @@ def GetSherdPatches(img, size, stride):
     dst_box = np.array([[0, 0], [size - 1, 0], [size - 1, size - 1], [0, size - 1]]).astype(np.float32)
     for x in range(0, w - size + 1, stride):
         for y in range(0, h - size + 1, stride):
-            for angle in range(0, 360, 10):
+            for angle in range(0, 360, 10): # sherd patches are rotated while design patches are not
+                # Affine transformation
                 src_box = dst_box + np.array([x, y])
                 rotate_mat = cv2.getRotationMatrix2D((x + p, y + p), angle, 1.0)
                 src_box = cv2.transform(np.expand_dims(src_box, axis=1), rotate_mat)
                 src_box = src_box.squeeze().astype(np.float32)
                 aff_mat = cv2.getAffineTransform(src_box[0:3], dst_box[0:3])
                 tmp_patch = cv2.warpAffine(img, aff_mat, (size, size))
+                # Discard black patches
                 if np.mean(tmp_patch) > 10:
                     patch_locs.append([x, y, angle, np.mean(tmp_patch)])
                     patch_imgs.append(tmp_patch)
@@ -97,14 +100,11 @@ class Matcher():
         self.opts = opts
 
     def img2feat(self, img):
-        img = np.transpose(img, (1,2,0))
-        img = cv2.resize(img, (self.cnn_patch_size, self.cnn_patch_size))
         if img.ndim == 2:
-            img = np.expand_dims(img, axis=2)
-        img = np.transpose(img, (2,0,1))
-        img = img.astype(float)
-        img = img - 128
-        img = img / 255
+            img = np.expand_dims(img, axis=0)
+        if img.shape[1] != self.cnn_patch_size or img.shape[2] != self.cnn_patch_size:
+            img = resize(img, (img.shape[0], self.cnn_patch_size, self.cnn_patch_size))
+        img = (img - 128.0) / 255.0
         img = np.expand_dims(img, axis=1)
         img = torch.Tensor(img).to(next(self.sim_model.parameters()).device)
         feat = self.sim_model(img)
@@ -132,13 +132,19 @@ class Matcher():
         sherd_img = curve_img
         sherd_img = cv2.resize(sherd_img, None, fx=resize_scale, fy=resize_scale)
         sherd_patch_stride = max(sherd_patch_stride, int(max(sherd_img.shape) / 30))
-        patch_size = min(patch_size, sherd_img.shape[0], sherd_img.shape[1])
+        patch_size = min(patch_size, sherd_img.shape[0], sherd_img.shape[1]) # in case of the sherd is smaller than the predefined patch size
         round_mask = np.zeros((patch_size, patch_size), np.uint8)
         round_mask = cv2.circle(round_mask, (patch_size // 2, patch_size // 2), patch_size // 2, 255, -1)
         sherd_patch_locs, sherd_patch_imgs = GetSherdPatches(sherd_img, size=patch_size, stride=sherd_patch_stride)
         sherd_patch_imgs[:, round_mask == 0] = 0
 
-        # One pair of patches for each design
+        # get all sherd patch features
+        sherd_patch_feats = np.zeros((0, self.cnn_feat_len), dtype=np.float32)
+        k = 0
+        while k < sherd_patch_imgs.shape[0]:
+            sherd_patch_feats = np.vstack((sherd_patch_feats, self.img2feat(sherd_patch_imgs[k:k + self.opts['batch_size']])))
+            k += self.opts['batch_size']
+
         candi_matches = list()
         design_patch_loc_dict = dict()
         for j, design_name in enumerate(os.listdir(design_dir)):
@@ -153,18 +159,28 @@ class Matcher():
             design_patch_locs, design_patch_imgs = GetDesignPatches(design_img, size=patch_size, stride=design_patch_stride)
             design_patch_loc_dict[design_name] = design_patch_locs
             design_patch_imgs[:, round_mask == 0] = 0
+
+            # get all design patch features
             design_patch_feats = np.zeros((0, self.cnn_feat_len), dtype=np.float32)
             k = 0
             while k < design_patch_imgs.shape[0]:
                 design_patch_feats = np.vstack((design_patch_feats, self.img2feat(design_patch_imgs[k:k + batch_size])))
                 k += batch_size
-            sherd2design_dist, sherd2design_idx = self.GetSherdToDesignPatchDists(sherd_patch_imgs, design_patch_feats)
-            sherd2design_dist = np.sqrt(sherd2design_dist) / sherd_patch_locs[:, 3]
-            match_score = 1.0 / np.min(sherd2design_dist)
+
+            # Fast KNN searching
+            self.gpu_index.reset()
+            self.gpu_index.add(design_patch_feats.astype(np.float32))
+            sherd2design_dist, sherd2design_idx = self.gpu_index.search(sherd_patch_feats, 1)
+            sherd2design_dist = sherd2design_dist.squeeze()
+            sherd2design_idx = sherd2design_idx.squeeze()
+
+            sherd2design_dist = np.sqrt(sherd2design_dist) / sherd_patch_locs[:, 3] # the original dist is related to the avg grey value of patch, just normlize it
+            match_score = 1.0 / np.min(sherd2design_dist) # Karen wants a positive indicator, so take the reciprocal as matchig score
             sherd_patch_idx = np.argmin(sherd2design_dist)
             design_patch_idx = int(sherd2design_idx[sherd_patch_idx])
-            candi_matches.append([design_name, sherd_patch_idx, design_patch_idx, match_score])
-        candi_matches = sorted(candi_matches, key=lambda match: match[-1], reverse=True)
+            candi_matches.append([design_name, sherd_patch_idx, design_patch_idx, match_score]) # only one match for each design
+
+        candi_matches = sorted(candi_matches, key=lambda match: match[-1], reverse=True) # Sort by matching score
 
         top_k_match = list()
         for k in range(0, min(top_k, len(candi_matches))):
