@@ -110,17 +110,6 @@ class Matcher():
         feat = self.sim_model(img)
         return feat.data.cpu().numpy()
 
-    def GetSherdToDesignPatchDists(self, sherd_patch_imgs, design_patch_feats):
-        sherd_patch_feats = np.zeros((0, self.cnn_feat_len), dtype=np.float32)
-        k = 0
-        while k < sherd_patch_imgs.shape[0]:
-            sherd_patch_feats = np.vstack((sherd_patch_feats, self.img2feat(sherd_patch_imgs[k:k + self.opts['batch_size']])))
-            k += self.opts['batch_size']
-        self.gpu_index.reset()
-        self.gpu_index.add(design_patch_feats.astype(np.float32))
-        sherd2design_dist, sherd2design_idx = self.gpu_index.search(sherd_patch_feats, 1)
-        return sherd2design_dist.squeeze(), sherd2design_idx.squeeze()
-
     def GetTopKMatch(self, sherd_name, depth_img, curve_img, mask_img, design_dir):
         resize_scale = self.opts['resize_scale']
         batch_size = self.opts['batch_size']
@@ -144,6 +133,7 @@ class Matcher():
         while k < sherd_patch_imgs.shape[0]:
             sherd_patch_feats = np.vstack((sherd_patch_feats, self.img2feat(sherd_patch_imgs[k:k + self.opts['batch_size']])))
             k += self.opts['batch_size']
+        faiss.normalize_L2(sherd_patch_feats)
 
         candi_matches = list()
         design_patch_loc_dict = dict()
@@ -166,15 +156,16 @@ class Matcher():
             while k < design_patch_imgs.shape[0]:
                 design_patch_feats = np.vstack((design_patch_feats, self.img2feat(design_patch_imgs[k:k + batch_size])))
                 k += batch_size
+            faiss.normalize_L2(design_patch_feats)
 
             # Fast KNN searching
             self.gpu_index.reset()
-            self.gpu_index.add(design_patch_feats.astype(np.float32))
+            self.gpu_index.add(design_patch_feats)
             sherd2design_dist, sherd2design_idx = self.gpu_index.search(sherd_patch_feats, 1)
             sherd2design_dist = sherd2design_dist.squeeze()
             sherd2design_idx = sherd2design_idx.squeeze()
 
-            sherd2design_dist = np.sqrt(sherd2design_dist) / sherd_patch_locs[:, 3] # the original dist is related to the avg grey value of patch, just normlize it
+            sherd2design_dist = np.sqrt(sherd2design_dist)
             match_score = 1.0 / np.min(sherd2design_dist) # Karen wants a positive indicator, so take the reciprocal as matchig score
             sherd_patch_idx = np.argmin(sherd2design_dist)
             design_patch_idx = int(sherd2design_idx[sherd_patch_idx])
