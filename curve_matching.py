@@ -7,6 +7,8 @@ import faiss
 import xlsxwriter
 import torch
 from skimage.transform import resize
+from scipy.spatial.distance import cdist
+import time
 
 
 def GetSherdPatches(img, size, stride):
@@ -93,17 +95,18 @@ def GetBoxOnImg(img, x, y, angle, size):
 class Matcher():
     def __init__(self, opts, sim_model, design_dir):
         self.cnn_patch_size = 150
-        self.cnn_feat_len = 24576
+        self.cnn_feat_len = 10000
         cpu_index = faiss.IndexFlatL2(self.cnn_feat_len)
         self.gpu_index = faiss.index_cpu_to_all_gpus(cpu_index)
         self.sim_model = sim_model
         self.opts = opts
 
     def img2feat(self, img):
+        img = np.transpose(img, (1,2,0))
+        img = cv2.resize(img, (self.cnn_patch_size, self.cnn_patch_size))
         if img.ndim == 2:
-            img = np.expand_dims(img, axis=0)
-        if img.shape[1] != self.cnn_patch_size or img.shape[2] != self.cnn_patch_size:
-            img = resize(img, (img.shape[0], self.cnn_patch_size, self.cnn_patch_size))
+            img = np.expand_dims(img, axis=2)
+        img = np.transpose(img, (2,0,1))
         img = (img - 128.0) / 255.0
         img = np.expand_dims(img, axis=1)
         img = torch.Tensor(img).to(next(self.sim_model.parameters()).device)
@@ -114,17 +117,16 @@ class Matcher():
         resize_scale = self.opts['resize_scale']
         batch_size = self.opts['batch_size']
         patch_size = int(self.opts['patch_size'] * resize_scale)
-        sherd_patch_stride = int(self.opts['sherd_patch_stride'] * resize_scale)
-        design_patch_stride = int(self.opts['design_patch_stride'] * resize_scale)
+        patch_stride = int(self.opts['patch_stride'] * resize_scale)
         top_k = self.opts['top_k']
 
         sherd_img = curve_img
         sherd_img = cv2.resize(sherd_img, None, fx=resize_scale, fy=resize_scale)
-        sherd_patch_stride = max(sherd_patch_stride, int(max(sherd_img.shape) / 30))
+        # patch_stride = max(patch_stride, int(max(sherd_img.shape) / 30))
         patch_size = min(patch_size, sherd_img.shape[0], sherd_img.shape[1]) # in case of the sherd is smaller than the predefined patch size
         round_mask = np.zeros((patch_size, patch_size), np.uint8)
         round_mask = cv2.circle(round_mask, (patch_size // 2, patch_size // 2), patch_size // 2, 255, -1)
-        sherd_patch_locs, sherd_patch_imgs = GetSherdPatches(sherd_img, size=patch_size, stride=sherd_patch_stride)
+        sherd_patch_locs, sherd_patch_imgs = GetSherdPatches(sherd_img, size=patch_size, stride=patch_stride)
         sherd_patch_imgs[:, round_mask == 0] = 0
 
         # get all sherd patch features
@@ -141,12 +143,12 @@ class Matcher():
             design_name = design_name.split('.')[0]
             # if design_name != '143':
             #     continue
-            # print(design_name)
+            # print(j, design_name)
             design_img = cv2.imread(os.path.join(design_dir, design_name + '.png'), 0)
             design_img = cv2.resize(design_img, None, fx=resize_scale, fy=resize_scale)
             if design_img.shape[0] < patch_size or design_img.shape[1] < patch_size:
                 continue
-            design_patch_locs, design_patch_imgs = GetDesignPatches(design_img, size=patch_size, stride=design_patch_stride)
+            design_patch_locs, design_patch_imgs = GetDesignPatches(design_img, size=patch_size, stride=patch_stride)
             design_patch_loc_dict[design_name] = design_patch_locs
             design_patch_imgs[:, round_mask == 0] = 0
 
@@ -166,7 +168,7 @@ class Matcher():
             sherd2design_idx = sherd2design_idx.squeeze()
 
             sherd2design_dist = np.sqrt(sherd2design_dist)
-            match_score = 1.0 / np.min(sherd2design_dist) # Karen wants a positive indicator, so take the reciprocal as matchig score
+            match_score = 1.0 / np.min(sherd2design_dist)
             sherd_patch_idx = np.argmin(sherd2design_dist)
             design_patch_idx = int(sherd2design_idx[sherd_patch_idx])
             candi_matches.append([design_name, sherd_patch_idx, design_patch_idx, match_score]) # only one match for each design

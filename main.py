@@ -42,7 +42,6 @@ cmn_net.load_state_dict(cmn_ckp)
 cmn_net.to(device)
 matcher = Matcher(opts, cmn_net, args.design_dir)
 
-
 if __name__ == "__main__":
     if args.scan_name is None:
         name_list = os.listdir(args.in_dir)
@@ -50,6 +49,8 @@ if __name__ == "__main__":
         name_list = [args.scan_name]
 
     for scan_name in name_list:
+        if os.path.exists(os.path.join(args.out_dir, scan_name.split('.')[0]+'-1')):
+            continue
         print("Splitting scan:", scan_name)
         split_num = xyz_proc_lib.SplitCloud(
                         bytes(args.in_dir, encoding='utf8'),
@@ -64,6 +65,8 @@ if __name__ == "__main__":
 
         for i in range(0, split_num):
             sherd_name = scan_name.split('.')[0] + '-' + str(i+1)
+            if sherd_name not in sherd_name_list:
+                continue
             print("--- Processing sherd:", sherd_name)
             try:
                 pt_cloud = ReadXYZ(os.path.join(args.out_dir, sherd_name, 'sherd.xyz'))
