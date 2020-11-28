@@ -45,13 +45,7 @@ Example of the matching result:
     `$ make`
 
 #### Usage example:
-- For one scan:
-
-    `$ python main.py --in-dir ./input --scan-name SCAN000702-1.xyz --out-dir ./output`
-
-- For batch processing (process all scans in the input folder):
-
-    `$ python main.py --in-dir ./input --out-dir ./output`
+- `$ python main.py --input ./input.zip --output ./output.zip`
 
 - Parameters that could be adjusted are listed in './config.json'.
 

@@ -95,7 +95,7 @@ def GetBoxOnImg(img, x, y, angle, size):
 class Matcher():
     def __init__(self, opts, sim_model, design_dir):
         self.cnn_patch_size = 150
-        self.cnn_feat_len = 10000
+        self.cnn_feat_len = 24576
         cpu_index = faiss.IndexFlatL2(self.cnn_feat_len)
         self.gpu_index = faiss.index_cpu_to_all_gpus(cpu_index)
         self.sim_model = sim_model

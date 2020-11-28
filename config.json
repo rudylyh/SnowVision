@@ -5,7 +5,7 @@
     "sample_resolution": 0.1,
     "resize_scale": 0.5,
     "patch_size": 300,
-    "patch_stride": 20,
+    "patch_stride": 10,
     "batch_size": 500,
     "top_k": 20
 }
