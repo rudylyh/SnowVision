@@ -80,23 +80,23 @@ if __name__ == "__main__":
         for i in range(0, split_num):
             sherd_name = scan_name.split('.')[0] + '-' + str(i+1)
             print("--- Processing sherd:", sherd_name)
-            # try:
-            pt_cloud = ReadXYZ(os.path.join(out_dir, sherd_name, 'sherd.xyz'))
+            try:
+                pt_cloud = ReadXYZ(os.path.join(out_dir, sherd_name, 'sherd.xyz'))
 
-            print("------ Extracting depth image")
-            depth_mat, depth_img, mask_img = PointCloud2DepthImg(pt_cloud, px_size=opts['sample_resolution'])
-            cv2.imwrite(os.path.join(out_dir, sherd_name, 'depth.png'), depth_img)
-            cv2.imwrite(os.path.join(out_dir, sherd_name, 'mask.png'), mask_img)
+                print("------ Extracting depth image")
+                depth_mat, depth_img, mask_img = PointCloud2DepthImg(pt_cloud, px_size=opts['sample_resolution'])
+                cv2.imwrite(os.path.join(out_dir, sherd_name, 'depth.png'), depth_img)
+                cv2.imwrite(os.path.join(out_dir, sherd_name, 'mask.png'), mask_img)
 
-            print("------ Extracting curve image")
-            curve_img = depth2curve(depth_img, mask_img, cen_net)
-            cv2.imwrite(os.path.join(out_dir, sherd_name, 'curve.png'), curve_img)
+                print("------ Extracting curve image")
+                curve_img = depth2curve(depth_img, mask_img, cen_net)
+                cv2.imwrite(os.path.join(out_dir, sherd_name, 'curve.png'), curve_img)
 
-            print("------ Matching with all designs")
-            top_k_match = matcher.GetTopKMatch(sherd_name.split('.')[0], depth_img, curve_img, mask_img, args.design_dir)
-            matcher.WriteMatchResults(top_k_match, os.path.join(out_dir, sherd_name))
-            # except:
-            #     print("------ Failed.")
+                print("------ Matching with all designs")
+                top_k_match = matcher.GetTopKMatch(sherd_name.split('.')[0], depth_img, curve_img, mask_img, args.design_dir)
+                matcher.WriteMatchResults(top_k_match, os.path.join(out_dir, sherd_name))
+            except:
+                print("------ Failed.")
 
     if args.output.endswith('zip'):
         shutil.make_archive(args.output[:-4], 'zip', out_dir)
